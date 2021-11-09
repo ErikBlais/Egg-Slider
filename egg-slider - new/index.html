@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet"> 
+        <style>
+            body {
+                background-image: url("background1.png");
+                background-size: cover;
+                background-color: wheat;
+                overflow: hidden;
+            }
+            #box,
+            #box3,
+            #box4,
+            #box5 {
+                position: absolute;
+                left: 17rem;
+                bottom: -3rem;
+                width: 1250px;
+                height: 1000px;
+            }
+            #box2 {
+                position: absolute;
+                left: 17rem;
+                bottom: -5rem;
+                width: 1250px;
+                height: 1000px;
+            }
+            h1{
+                font-family: 'Creepster', cursive;
+                color: brown;
+                border-bottom: 4px solid brown;
+                filter:drop-shadow(30px 10px 4px #4444dd)
+                width: 1125px;
+                position: absolute;
+                top: ;
+                left: 25rem;
+            }
+            #opacity-slider {
+                position: absolute;
+                right: 30rem;
+                bottom: 5rem;
+                width: 1000px;
+                border-radius: 5px;
+                background: #d3d3d3;
+                outline: none;
+                opacity: 0.7;
+                -webkit-transition: 0.2s;
+                transition: opacity 0.2s;
+            }
+            #opacity-slider:hover {
+                opacity: 1;
+            }
+
+            input[type=range]::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                border: 1px solid #000000;
+                height: 36px;
+                width: 16px;
+                border-radius: 3px;
+                background-image: url("Brownegg.png");
+                cursor: pointer;
+                margin-top: -14px; 
+                box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; 
+            }
+
+            input[type=range]::-moz-range-thumb {
+                box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+                border: 1px solid #000000;
+                height: 36px;
+                width: 16px;
+                border-radius: 3px;
+                background-image: url("Brownegg.png");
+                cursor: pointer;
+            }
+
+            input[type=range]::-ms-thumb {
+                box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+                border: 1px solid #000000;
+                height: 36px;
+                width: 16px;
+                border-radius: 3px;
+                background-image: url("Brownegg.png");
+                cursor: pointer;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>You have been presented an egg...care for it and it may care for you, otherwise.......</h1>
+
+        <div id="container">
+            <img id="box" src="Brownegg.png" alt="A Brown Egg" />
+            <img
+                id="box2"
+                src="browneggcracked.png"
+                alt="The Brown egg cracked..."
+            />
+            <img
+                id="box3"
+                src="newpartymemberbrownegg.png"
+                alt="A new party member!!"
+            />
+            <img id="box4" src="crush-brown-egg.gif" alt="You monster :(" />
+            <img id="box5" src="endingb.png" alt="Punished for your ways..." />
+        </div>
+        <input type="range" min="0" max="100" id="opacity-slider" />
+
+        <script>
+            //declaring variables
+            const container = document.getElementById("container");
+            const box = document.getElementById("box");
+            const box2 = document.getElementById("box2");
+            const box3 = document.getElementById("box3");
+            const box4 = document.getElementById("box4");
+            const box5 = document.getElementById("box5");
+
+            box2.remove();
+            box3.remove();
+            box4.remove();
+            box5.remove();
+            const opacitySlider = document.getElementById("opacity-slider");
+            function changeOpacity() {
+                let sliderValue = opacitySlider.value;
+                console.log(sliderValue);
+                if (sliderValue >= 99) {
+                    box.remove();
+                    box2.remove();
+                    box4.remove();
+                    box5.remove();
+                    container.appendChild(box3);
+                } else if (sliderValue >= 75 && sliderValue < 99) {
+                    box.remove();
+                    box3.remove();
+                    box4.remove();
+                    box5.remove();
+                    container.appendChild(box2);
+                } else if (sliderValue > 50 && sliderValue < 75) {
+                    box2.remove();
+                    box3.remove();
+                    box4.remove();
+                    box5.remove();
+                    container.appendChild(box);
+                } else if (sliderValue <= 50 && sliderValue > 25) {
+                    box.remove();
+                    box2.remove();
+                    box3.remove();
+                    box5.remove();
+                    container.appendChild(box4);
+                } else if (sliderValue <= 1) {
+                    box.remove();
+                    box3.remove();
+                    box4.remove();
+                    box5.remove();
+                    container.appendChild(box5);
+                } 
+            }
+            opacitySlider.addEventListener("input", changeOpacity);
+        </script>
+    </body>
+</html>
